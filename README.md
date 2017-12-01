@@ -19,8 +19,8 @@ Basic usage
     var_dump($s->contains("Hello")); // true
     var_dump($s->containsOneOf("Hi","Ciao","Hey")); // false
 
-Random string & password
-------------------------
+Random strings & passwords
+--------------------------
 
 Method String4::RandomString() generates string of the given length composed of random characters taken from the set [a-zA-Z0-9].
 
@@ -41,7 +41,7 @@ String4::RandomPassword() can be also used as a voucher codes generator:
 Installation
 ------------
 
-Use the Composer to install Files.
+Use the Composer to install String4.
 
     cd path/to/your/project/
     composer require atk14/string4
@@ -49,4 +49,4 @@ Use the Composer to install Files.
 Licence
 -------
 
-Files is free software distributed [under the terms of the MIT license](http://www.opensource.org/licenses/mit-license)
+String4 is free software distributed [under the terms of the MIT license](http://www.opensource.org/licenses/mit-license)
