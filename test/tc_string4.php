@@ -165,8 +165,12 @@ class TcString4 extends TcBase{
 	function test_camelize(){
 		foreach(array(
 			"hello_world" => "HelloWorld",
+			"hello_World" => "HelloWorld",
 			"hello_123" => "Hello123",
 			"a_b_c_d" => "ABCD",
+			"štika" => "Štika",
+			"šišatá_štika" => "ŠišatáŠtika",
+			"štika_šišatá" => "ŠtikaŠišatá",
 		) as $str => $result){
 			$str = new String4($str);
 			$this->assertEquals($result,$out = (string)$str->camelize());
@@ -178,6 +182,15 @@ class TcString4 extends TcBase{
 		$str = String4::ToObject("hello_world");
 		$this->assertEquals("helloWorld",(string)$str->camelize(array("lower" => true)));
 		$this->assertEquals("HelloWorld",(string)$str->camelize());
+
+		$str = String4::ToObject("Štika");
+		$this->assertEquals("štika",(string)$str->camelize(array("lower" => true)));
+
+		$str = String4::ToObject("ŠišatáŠtika");
+		$this->assertEquals("šišatáŠtika",(string)$str->camelize(array("lower" => true)));
+
+		$str = String4::ToObject("Šišatá štika");
+		$this->assertEquals("šišatá štika",(string)$str->camelize(array("lower" => true)));
 	}
 
 	function test_underscore(){
@@ -186,6 +199,8 @@ class TcString4 extends TcBase{
 			"ABCD" => "abcd",
 			"Hello123" => "hello123",
 			"123Hello" => "123_hello",
+			"ŠišatáŠtika" => "šišatá_štika",
+			"ŠtikaŠišatá" => "štika_šišatá",
 		) as $str => $result){
 			$str = new String4($str);
 			$this->assertEquals($result,(string)$str->underscore());

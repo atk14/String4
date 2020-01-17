@@ -493,12 +493,14 @@ class String4{
 		);
 		$out = $this->_copy();
 		$s = &$out->_String4;
-		$s = preg_replace_callback("/_([a-z0-9])/i",function($matches){ return strtoupper($matches[1]); },$this->_String4);
+		$s = preg_replace_callback("/_([a-z0-9\p{Ll}])/ui",function($matches){ return mb_strtoupper($matches[1]); },$this->_String4);
 
-		if(isset($s[0])){
-			$s[0] = $options["lower"] ? strtolower($s[0]) : strtoupper($s[0]);
+		if(mb_strlen($s)){
+			$first = $out->substr( 0, 1);
+			$first = $options["lower"] ? mb_strtolower($first) : mb_strtoupper($first);
+			$s = $first.$out->substr(1);
 		}
-			
+
 		return $out;
 	}
 
@@ -563,7 +565,7 @@ class String4{
 	 */
 	function underscore(){
 		$out = $this->_copy();
-		$out->_String4 = strtolower(preg_replace("/([a-z0-9])([A-Z])/","\\1_\\2",$this->_String4));
+		$out->_String4 = mb_strtolower(preg_replace("/([a-z0-9\p{Ll}])([A-Z\p{Lu}])/u","\\1_\\2",$this->_String4));
 		return $out;
 	}
 
