@@ -88,21 +88,20 @@ class TcString4 extends TcBase{
 		$this->assertEquals("Hello World",(string)$str->replace(array()));
 	}
 
-	function test_sub(){
+	function test_gsub(){
 		$str = new String4("hello");
 		$this->assertEquals("hexxo",(string)$str->gsub("/l/","x"));
 
 		$str = new String4("Hello_World!");
 		$this->assertEquals("Hello World!",(string)$str->gsub("/[^A-Z!]/i"," "));
-	}
 
-	function test_sub_callback() {
 		$str = new String4("hello");
 		$out = $str->gsub("/^./", function($m) {
 			return mb_strtoupper($m[0]);
 		});
 		$this->assertEquals("Hello", (string)$out);
 
+		$str = new String4("hello");
 		$out = $str->gsub("/[l]/", function($m) {
 			return "X";
 		});
