@@ -267,12 +267,23 @@ class String{
 	 * $string = $string->gsub("/l/","x");
 	 * ```
 	 *
+	 * The same as above using callback
+	 * ```
+	 * $string = new String("Hello World");
+	 * $string = $string->gsub("/l/", function($m){
+	 * 	return "x";
+	 * } );
+	 * ```
+	 *
 	 * @param string $pattern regexp string
-	 * @param string $replace string replacement
-	 * @return String Object of String class with replaced content
+	 * @param string|callable $replace_or_callable string replacement or callback function
+	 * @return String new instance of String4 class with replaced content
 	 */
-	function gsub($pattern,$replace){
-		return $this->_copy(preg_replace($pattern,$replace,$this->_String));
+	function gsub($pattern,$replace_or_callable){
+		if (is_callable($replace_or_callable)) {
+			return $this->_copy(preg_replace_callback($pattern,$replace_or_callable,$this->_String));
+		}
+		return $this->_copy(preg_replace($pattern,$replace_or_callable,$this->_String));
 	}
 
 	/**
