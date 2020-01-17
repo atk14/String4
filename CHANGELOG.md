@@ -3,6 +3,12 @@ Change Log
 
 All notable changes to this project will be documented in this file.
 
+[0.2] - 2020-01-17
+--------------------
+- String4::capitalize()
+- String4::gsub() accepts callback
+- String4::camelize() and String4::underscore() support unicode
+
 [0.1.1] - 2018-02-16
 --------------------
 
