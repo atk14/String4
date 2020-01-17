@@ -269,6 +269,12 @@ class TcString4 extends TcBase{
 		$this->assertEquals("UTF-8",$s->getEncoding());
 		$this->assertEquals("ŠPINAVÁ ŘEDKVIČKA",(string)$s->upcase());
 		$this->assertEquals("špinavá ředkvička",(string)$s->lower());
+
+		$s = new String4("špinavá ředkvička");
+		$this->assertEquals("Špinavá ředkvička",(string)$s->capitalize());
+
+		$s = new String4("špinavá paní Ředkvička");
+		$this->assertEquals("Špinavá paní Ředkvička",(string)$s->capitalize());
 	}
 
 	function test_toAscii(){

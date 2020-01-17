@@ -602,6 +602,20 @@ class String{
 	function upper(){ return $this->upcase(); }
 
 	/**
+	 * Makes first character of string uppercase.
+	 *
+	 * @return String
+	 */
+	function capitalize() {
+		$out = $this->_copy();
+		$s = &$out->_String;
+
+		$first = mb_strtoupper($out->substr( 0, 1));
+		$s = $first.$out->substr(1);
+		return $out;
+	}
+
+	/**
 	 * Converts string to ASCII
 	 *
 	 * @return String object containing string converted to ASCII
