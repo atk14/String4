@@ -3,6 +3,11 @@ Change Log
 
 All notable changes to this project will be documented in this file.
 
+[0.1.1] - 2018-02-16
+--------------------
+### Fixed
+- String4::gsub() fixed: in some cases string was recognized as callable
+
 [0.2] - 2020-01-17
 --------------------
 - String4::capitalize()
