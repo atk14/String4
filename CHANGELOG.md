@@ -3,7 +3,11 @@ Change Log
 
 All notable changes to this project will be documented in this file.
 
-[0.1.1] - 2018-02-16
+[0.3] - 2020-03-02
+------------------
+- String4::toSlug() improved, added options max_length and suffix
+
+[0.2.1] - 2020-01-24
 --------------------
 ### Fixed
 - String4::gsub() fixed: in some cases string was recognized as callable
