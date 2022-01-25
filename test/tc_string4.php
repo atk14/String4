@@ -1,5 +1,6 @@
 <?php
 class TcString4 extends TcBase{
+
 	function test_get_id(){
 		$s = new String4("Hi");
 		$this->assertTrue(is_string($s->getId()));
