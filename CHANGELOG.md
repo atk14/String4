@@ -3,6 +3,16 @@ Change Log
 
 All notable changes to this project will be documented in this file.
 
+[0.4] - 2022-01-25
+------------------
+
+- Added methods
+  * fixEncoding()
+  * stripHtml()
+  * isLower()
+  * isUpper()
+  * uncapitalize()
+
 [0.3] - 2020-03-02
 ------------------
 - String4::toSlug() improved, added options max_length and suffix
