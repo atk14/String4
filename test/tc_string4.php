@@ -377,6 +377,16 @@ class TcString4 extends TcBase{
 		$this->assertEquals(false,$s->toBoolean());
 	}
 
+	function test_stripTags_stripHtml(){
+		$html = " <html> <!-- Comment? --> <head> <title> TITLE </title> <style> .body{ color: red; } </style> </head> <body>\n <p> <span>Good</span>  Try</p><p>But  &lt;&lt;Wrong&gt;&gt;</p> </body> </html> ";
+		$s = new String4($html);
+
+		$this->assertEquals("     TITLE   .body{ color: red; }   \n  Good  TryBut  &lt;&lt;Wrong&gt;&gt;   ",(string)$s->stripTags());
+		$this->assertEquals("Good Try But <<Wrong>>",(string)$s->stripHtml());
+
+		$this->assertEquals($html,(string)$s);
+	}
+
 	function test_substr(){
 		$s = new String4("Lorem Ipsum");
 		$this->assertEquals("Lorem",(string)$s->substr(0,5));
