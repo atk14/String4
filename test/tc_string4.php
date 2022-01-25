@@ -444,4 +444,29 @@ class TcString4 extends TcBase{
 		$this->assertEquals("12345",(string)$s->toSlug(array("max_length" => 0, "suffix" => "12345")));
 		$this->assertEquals("12345",(string)$s->toSlug(array("max_length" => -10, "suffix" => "12345")));
 	}
+
+	function test_fixEncoding(){
+		$invalid = chr(200);
+
+		$s = new String4("");
+		$this->assertEquals("",$s->fixEncoding());
+
+		$s = new String4("Příliš žluťoučký kůň úpěl ďábelské ódy");
+		$this->assertEquals("Příliš žluťoučký kůň úpěl ďábelské ódy",$s->fixEncoding());
+
+		$src = "{$invalid}Příliš{$invalid} žl{$invalid}uťoučký kůň úpěl ďábelské ódy{$invalid}";
+		$this->assertFalse(Translate::CheckEncoding($src,"UTF-8"));
+		$s = new String4($src);
+		$out = (string)$s->fixEncoding();
+		$this->assertEquals("�Příliš� žl�uťoučký kůň úpěl ďábelské ódy�",$out);
+		$this->assertTrue(Translate::CheckEncoding($out,"UTF-8"));
+
+		$out = (string)$s->fixEncoding(array("replacement" => "?"));
+		$this->assertEquals("?Příliš? žl?uťoučký kůň úpěl ďábelské ódy?",$out);
+		$this->assertTrue(Translate::CheckEncoding($out,"UTF-8"));
+
+		$out = (string)$s->fixEncoding("▒");
+		$this->assertEquals("▒Příliš▒ žl▒uťoučký kůň úpěl ďábelské ódy▒",$out);
+		$this->assertTrue(Translate::CheckEncoding($out,"UTF-8"));
+	}
 }
