@@ -3,6 +3,12 @@ Change Log
 
 All notable changes to this project will be documented in this file.
 
+[0.5] - 2022-07-04
+------------------
+
+* 7b40bd9 - Removed obsolete class String that only worked in PHP 5 (BC BREAK)
+* ceeb1c0 - By default, String4::chars() returns array of String4
+
 [0.4] - 2022-01-25
 ------------------
 
