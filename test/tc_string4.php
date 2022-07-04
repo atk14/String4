@@ -8,8 +8,26 @@ class TcString4 extends TcBase{
 	}
 
 	function test_chars(){
+		// by default, String4::chars() returns array of String4
 		$s = new String4("Hi!");
-		$this->assertEquals(array("H","i","!"),$s->chars());
+		$chars = $s->chars();
+		$this->assertEquals(3,sizeof($chars));
+		$this->assertTrue(is_a($chars[0],"String4"));
+		$this->assertTrue(is_a($chars[1],"String4"));
+		$this->assertTrue(is_a($chars[2],"String4"));
+		$this->assertEquals("Hi!","$chars[0]$chars[1]$chars[2]");
+
+		$s = new String4("Hi!");
+		$this->assertEquals(array("H","i","!"),$s->chars(array("stringify" => true)));
+
+		$s = new String4(" A\n\r\tB\n");
+		$this->assertEquals(array(" ","A","\n","\r","\t","B","\n"),$s->chars(array("stringify" => true)));
+
+		$s = new String4("Člověče");
+		$this->assertEquals(array("Č","l","o","v","ě","č","e"),$s->chars(array("stringify" => true)));
+
+		$s = new String4("");
+		$this->assertEquals(array(),$s->chars());
 	}
 
 	function test_random_string(){
