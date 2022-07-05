@@ -217,6 +217,9 @@ class String4{
 
 		$u = $this->getEncoding(true)==="utf8" ? "u" : "";
 		$chars = preg_split("//s$u",$this->_String4,-1,PREG_SPLIT_NO_EMPTY);
+		if($chars === false){
+			$chars = preg_split("//s",$this->_String4,-1,PREG_SPLIT_NO_EMPTY);
+		}
 
 		if($options["stringify"]){
 			return $chars;

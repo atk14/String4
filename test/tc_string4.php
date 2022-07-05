@@ -28,6 +28,10 @@ class TcString4 extends TcBase{
 
 		$s = new String4("");
 		$this->assertEquals(array(),$s->chars());
+
+		$invalid_char = chr(200);
+		$s = new String4("A{$invalid_char}B");
+		$this->assertEquals(array("A",$invalid_char,"B"),$s->chars());
 	}
 
 	function test_random_string(){
