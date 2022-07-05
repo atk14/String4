@@ -3,6 +3,11 @@ Change Log
 
 All notable changes to this project will be documented in this file.
 
+[0.5.1] - 2022-07-05
+------------------
+
+* 2c25e49 - Method String4::chars() can split an invalid string
+
 [0.5] - 2022-07-04
 ------------------
 
