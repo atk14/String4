@@ -1,7 +1,7 @@
 {
         "name": "atk14/string4",
         "type": "library",
-        "description": "String4 is a PHP class that provides methods for string manipulation. This package is part of the ATK14 Framework.",
+        "description": "String4 is a PHP class that provides methods for string manipulation.",
         "keywords": ["string"],
         "homepage": "https://github.com/atk14/Http",
         "license": ["MIT"],

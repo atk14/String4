@@ -14,38 +14,38 @@ Basic usage
     echo $s->length(); // 12
     echo $s->replace("Hello","Hi"); // "Hi There!"
     echo $s->gsub('/[^a-z]/i','_');  // "Hello_There_"
-		echo $s->toSlug()(); // "hello-there"
-		echo $s->truncate(6); // "Hel..."
+    echo $s->toSlug()(); // "hello-there"
+    echo $s->truncate(6); // "Hel..."
 
-		echo $s->append(" My Dears"); // "Hello There! My Dears"
-		echo $s->prepend("Hi! "); // "Hi! Hello There!"
+    echo $s->append(" My Dears"); // "Hello There! My Dears"
+    echo $s->prepend("Hi! "); // "Hi! Hello There!"
 
     print_r($s->chars()); // ["H","e","l","l","o"," ","T","h","e","r","e","!"]
     echo $s->at(1); // "e"
     echo $s->substr(0,5); // "Hello"
-		print_r($s->split(" ")); // ["Hello","There!"] 
-		print_r($s->pregSplit('/\s+/')); // ["Hello","There!"] 
+    print_r($s->split(" ")); // ["Hello","There!"] 
+    print_r($s->pregSplit('/\s+/')); // ["Hello","There!"] 
 
     var_dump($s->contains("Hello")); // true
     var_dump($s->containsOneOf("Hi","Ciao","Hey")); // falseq
 
-		// Intelligent HTML tag removal
-		$html = "<h1>Welcome at our <em>web</em><small>site</small>!</h1><p>We are here to help you.<br>Write us.</p>";
-		$s = new String4($html);
-		echo $s->stripHtml(); // Welcome at our website! We are here to help you. Write us.
+    // Intelligent HTML tag removal
+    $html = "<h1>Welcome at our <em>web</em><small>site</small>!</h1><p>We are here to help you.<br>Write us.</p>";
+    $s = new String4($html);
+    echo $s->stripHtml(); // Welcome at our website! We are here to help you. Write us.
 
-		// Instantiation by a static method
-		$s = String4::ToObject("Hello There!");
+    // Instantiation by a static method
+    $s = String4::ToObject("Hello There!");
 
-		// Singularize & pluralize
-		$s = new String4("Happy people");
-		echo $s->singularize(); // "Happy person"
-		$s = new String4("Sad man");
-		echo $s->pluralize(); // "Sad men"
+    // Singularize & pluralize
+    $s = new String4("Happy people");
+    echo $s->singularize(); // "Happy person"
+    $s = new String4("Sad man");
+    echo $s->pluralize(); // "Sad men"
 
-		// chaining of methods
-		$class_name = "CookieConsentsController";
-		echo String4::ToObject($class_name)->gsub('/Controller$/','')->singularize()->underscore()->toString(); // "cookie_consent"
+    // chaining of methods
+    $class_name = "CookieConsentsController";
+    echo String4::ToObject($class_name)->gsub('/Controller$/','')->singularize()->underscore()->toString(); // "cookie_consent"
 
 Random strings & passwords
 --------------------------
@@ -78,3 +78,5 @@ Licence
 -------
 
 String4 is free software distributed [under the terms of the MIT license](http://www.opensource.org/licenses/mit-license)
+
+[//]: # ( vim: set ts=2 et: )
