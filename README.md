@@ -3,7 +3,7 @@ String4
 
 [![Build Status](https://app.travis-ci.com/atk14/String4.svg?token=Kc7UxgK5oqFG8sZAhCzg&branch=master)](https://app.travis-ci.com/atk14/String4)
 
-String4 is a PHP class that provides methods for string manipulation. This package is part of the ATK14 Framework.
+String4 is a PHP class that provides methods for string manipulation.
 
 Basic usage
 -----------
@@ -34,8 +34,14 @@ Basic usage
 		$s = new String4($html);
 		echo $s->stripHtml(); // Welcome at our website! We are here to help you. Write us.
 
-		// Instantiation by static method
+		// Instantiation by a static method
 		$s = String4::ToObject("Hello There!");
+
+		// Singularize & pluralize
+		$s = new String4("Happy people");
+		echo $s->singularize(); // "Happy person"
+		$s = new String4("Sad man");
+		echo $s->pluralize(); // "Sad men"
 
 		// chaining of methods
 		$class_name = "CookieConsentsController";
