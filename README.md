@@ -1,23 +1,45 @@
 String4
 =======
 
+[![Build Status](https://app.travis-ci.com/atk14/String4.svg?token=Kc7UxgK5oqFG8sZAhCzg&branch=master)](https://app.travis-ci.com/atk14/String4)
+
 String4 is a PHP class that provides methods for string manipulation. This package is part of the ATK14 Framework.
 
 Basic usage
 -----------
 
     $s = new String4("Hello There!");
-
     echo $s->lower(); // "hello there!"
     echo $s->upper(); // "HELLO THERE!"
     echo $s->length(); // 12
-    print_r($s->chars()); // ["H","e","l","l","o"," ","T","h","e","r","e","!"]
     echo $s->replace("Hello","Hi"); // "Hi There!"
     echo $s->gsub('/[^a-z]/i','_');  // "Hello_There_"
+		echo $s->toSlug()(); // "hello-there"
+		echo $s->truncate(6); // "Hel..."
+
+		echo $s->append(" My Dears"); // "Hello There! My Dears"
+		echo $s->prepend("Hi! "); // "Hi! Hello There!"
+
+    print_r($s->chars()); // ["H","e","l","l","o"," ","T","h","e","r","e","!"]
     echo $s->at(1); // "e"
     echo $s->substr(0,5); // "Hello"
+		print_r($s->split(" ")); // ["Hello","There!"] 
+		print_r($s->pregSplit('/\s+/')); // ["Hello","There!"] 
+
     var_dump($s->contains("Hello")); // true
-    var_dump($s->containsOneOf("Hi","Ciao","Hey")); // false
+    var_dump($s->containsOneOf("Hi","Ciao","Hey")); // falseq
+
+		// Intelligent HTML tag removal
+		$html = "<h1>Welcome at our <em>web</em><small>site</small>!</h1><p>We are here to help you.<br>Write us.</p>";
+		$s = new String4($html);
+		echo $s->stripHtml(); // Welcome at our website! We are here to help you. Write us.
+
+		// Instantiation by static method
+		$s = String4::ToObject("Hello There!");
+
+		// chaining of methods
+		$class_name = "CookieConsentsController";
+		echo String4::ToObject($class_name)->gsub('/Controller$/','')->singularize()->underscore()->toString(); // "cookie_consent"
 
 Random strings & passwords
 --------------------------
