@@ -3,6 +3,12 @@ Change Log
 
 All notable changes to this project will be documented in this file.
 
+[0.5.3] - 2025-02-07
+--------------------
+
+* 839501c - String4::stripHtml() fixed - `<br>` is not an inline tag
+* c14c629 - Added methods split, pregSplit and titleize
+
 [0.5.2] - 2023-12-05
 --------------------
 
