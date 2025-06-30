@@ -43,7 +43,7 @@ Basic usage
     $s = new String4("Sad man");
     echo $s->pluralize(); // "Sad men"
 
-    // chaining of methods
+    // Chaining of methods
     $class_name = "CookieConsentsController";
     echo String4::ToObject($class_name)->gsub('/Controller$/','')->singularize()->underscore()->toString(); // "cookie_consent"
 
