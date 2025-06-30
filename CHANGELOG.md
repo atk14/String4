@@ -3,6 +3,11 @@ Change Log
 
 All notable changes to this project will be documented in this file.
 
+[0.5.4] - 2025-06-30
+--------------------
+
+* 3bf9e93 - Added method String4::removeEmptyLines() + method String4::trim() has new optional parameter $remove_hidden_characters=false
+
 [0.5.3] - 2025-02-07
 --------------------
 
