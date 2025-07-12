@@ -619,6 +619,17 @@ BODY?
 	}
 
 	function test_eachLineFilter(){
+		$source = "A\nB";
+
+		$s = new String4($source);
+		$this->assertEquals("A\nB",(string)$s->eachLineFilter(function($line){ return true; }));
+		$this->assertEquals("A\nB",(string)$s->eachLineFilter());
+
+		$this->assertEquals("B",(string)$s->eachLineFilter(function($line){ return (string)$line!=="A"; }));
+		$this->assertEquals("A",(string)$s->eachLineFilter(function($line){ return (string)$line!=="B"; }));
+		$this->assertEquals("A\nB",(string)$s->eachLineFilter(function($line){ return (string)$line!=="C"; }));
+		// --
+
 		$source = trim("
 # Some comment
 Title

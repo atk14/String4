@@ -1218,10 +1218,10 @@ END;
 			}
 		}
 
-		if(strlen($ending)>0){
+		if(strlen($text)>0){
 			$line = $this->_copy($text);
 			if((bool)$filter($line)){
-				$out[] = $ending;
+				$out && ($out[] = $ending);
 				$out[] = $line;
 			}
 		}
