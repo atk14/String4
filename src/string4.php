@@ -1159,6 +1159,14 @@ END;
 		return $this->_copy(join("",$out));
 	}
 
+	/**
+	 * Applies the callback to the every line of the content
+	 *
+	 * ```
+	 * // trim every line
+	 * $string = $string->eachLineMap(function($line){ return $line->trim(); });
+	 * ```
+	 */
 	function eachLineMap($callback){
 		$text = $this->_String4;
 		$out = [];
@@ -1179,9 +1187,17 @@ END;
 		return $this->_copy(join("",$out));
 	}
 
-	function eachLineFilter($callback = null){
-		if(!$callback){
-			$callback = function($line){ return $line->length()>0; };
+	/**
+	 * Filters lines of the content using a callback function
+	 *
+	 * ```
+	 * // filter out empty lines
+	 * $string = $string->eachLineFilter(function($line){ return $line->trim()->length()>0; });
+	 * ```
+	 */
+	function eachLineFilter(callable $filter = null){
+		if(!$filter){
+			$filter = function($line){ return $line->length()>0; };
 		}
 
 		$text = $this->_String4;
@@ -1196,7 +1212,7 @@ END;
 			$text = substr($text,strlen($line) + strlen($ending));
 
 			$line = $this->_copy($line);
-			if((bool)$callback($line)){
+			if((bool)$filter($line)){
 				$out && ($out[] = $prev_ending);
 				$out[] = $line;
 			}
@@ -1204,7 +1220,7 @@ END;
 
 		if(strlen($ending)>0){
 			$line = $this->_copy($text);
-			if((bool)$callback($line)){
+			if((bool)$filter($line)){
 				$out[] = $ending;
 				$out[] = $line;
 			}
