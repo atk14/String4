@@ -1158,6 +1158,60 @@ END;
 
 		return $this->_copy(join("",$out));
 	}
+
+	function eachLineMap($callback){
+		$text = $this->_String4;
+		$out = [];
+		while(preg_match('/^(.*?)(\r\n|\n\r|\n|\r)/s',$text,$matches)){
+			$line = $matches[1];
+			$ending = $matches[2];
+
+			$text = substr($text,strlen($line) + strlen($ending));
+
+			$out[] = (string)$callback($this->_copy($line));
+			$out[] = $ending;
+		}
+
+		if(strlen($text)>0){
+			$out[] = (string)$callback($this->_copy($text));
+		}
+
+		return $this->_copy(join("",$out));
+	}
+
+	function eachLineFilter($callback = null){
+		if(!$callback){
+			$callback = function($line){ return $line->length()>0; };
+		}
+
+		$text = $this->_String4;
+		$out = [];
+		$ending = "";
+		while(preg_match('/^(.*?)(\r\n|\n\r|\n|\r)/s',$text,$matches)){
+			$prev_ending = $ending;
+
+			$line = $matches[1];
+			$ending = $matches[2];
+
+			$text = substr($text,strlen($line) + strlen($ending));
+
+			$line = $this->_copy($line);
+			if((bool)$callback($line)){
+				$out && ($out[] = $prev_ending);
+				$out[] = $line;
+			}
+		}
+
+		if(strlen($ending)>0){
+			$line = $this->_copy($text);
+			if((bool)$callback($line)){
+				$out[] = $ending;
+				$out[] = $line;
+			}
+		}
+
+		return $this->_copy(join("",$out));
+	}
 	
 	/**
 	 * Magic method
