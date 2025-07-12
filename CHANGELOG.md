@@ -3,6 +3,11 @@ Change Log
 
 All notable changes to this project will be documented in this file.
 
+[0.5.5] - 2025-06-30
+--------------------
+
+* 30f893b, 79f1895, ae5c810 - Added methods String4::eachLineMap($callback) and String4::eachLineFilter($callback = null)
+
 [0.5.4] - 2025-06-30
 --------------------
 
