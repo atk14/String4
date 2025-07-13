@@ -16,6 +16,8 @@ Basic usage
     echo $s->gsub('/[^a-z]/i','_');  // "Hello_There_"
     echo $s->toSlug()(); // "hello-there"
     echo $s->truncate(6); // "Hel..."
+    echo $s->toSlug(); // "hello-there"
+    echo $s->toSlug(8); // limiting max length - "hello-th"
 
     echo $s->append(" My Dears"); // "Hello There! My Dears"
     echo $s->prepend("Hi! "); // "Hi! Hello There!"
@@ -65,6 +67,14 @@ Basic usage
     // Chaining of methods
     $class_name = "CookieConsentsController";
     echo String4::ToObject($class_name)->gsub('/Controller$/','')->singularize()->underscore()->toString(); // "cookie_consent"
+
+    // Removing empty lines
+    $s = $s->removeEmptyLines();
+    // or with options
+    $s = $s->removeEmptyLines([
+      "max_empty_lines" => 2, // default 0
+      "trim_empty_lines" => false, // default true
+    ]);
 
     // Filtering text document
     // (e.g. removing empty lines from a document)
