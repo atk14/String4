@@ -27,7 +27,26 @@ Basic usage
     print_r($s->pregSplit('/\s+/')); // ["Hello","There!"] 
 
     var_dump($s->contains("Hello")); // true
-    var_dump($s->containsOneOf("Hi","Ciao","Hey")); // falseq
+    var_dump($s->containsOneOf("Hi","Ciao","Hey")); // false
+
+    // Trimming string
+    $s = $s->trim();
+    // or
+    $s = $s->trim(true); // trim also other control and non-displayable characters
+
+    // Converting string to a boolean value
+    String4::ToObject("Y")->toBoolean(); // true
+    String4::ToObject("on")->toBoolean(); // true
+    String4::ToObject("True")->toBoolean(); // true
+    String4::ToObject("NO")->toBoolean(); // false
+    String4::ToObject("off")->toBoolean(); // false
+    String4::ToObject("0")->toBoolean(); // false
+    // etc
+
+    // Fixing document encoding
+    $s = $s->fixEncoding();
+    // or
+    $s = $s->fixEncoding(["replacement" => "?"]); // setting a replacement for an invalid char
 
     // Intelligent HTML tag removal
     $html = "<h1>Welcome at our <em>web</em><small>site</small>!</h1><p>We are here to help you.<br>Write us.</p>";
@@ -46,6 +65,22 @@ Basic usage
     // Chaining of methods
     $class_name = "CookieConsentsController";
     echo String4::ToObject($class_name)->gsub('/Controller$/','')->singularize()->underscore()->toString(); // "cookie_consent"
+
+    // Filtering text document
+    // (e.g. removing empty lines from a document)
+    echo String4::ToObject($text_document)->eachLineFilter(
+      function($line){
+        return $line->trim()->length()>0;
+      }
+    )->toString();
+
+    // Applying function on each line
+    // (e.g. trimming each line)
+    echo String4::ToObject($text_document)->eachLineMap(
+      function($line){
+        return $line->trim();
+      }
+    )->toString();
 
 Random strings & passwords
 --------------------------
