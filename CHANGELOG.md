@@ -3,6 +3,11 @@ Change Log
 
 All notable changes to this project will be documented in this file.
 
+[0.5.7] - 2025-07-15
+--------------------
+
+* daa7702 - Method `String4::_trim()` fixed
+
 [0.5.6] - 2025-07-13
 --------------------
 
