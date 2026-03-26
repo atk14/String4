@@ -71,7 +71,7 @@ class TcString4 extends TcBase{
 		$this->assertEquals("",$chunks[3]->toString());
 	}
 
-	function test_random_string(){
+	function test_RandomString(){
 		$s1 = String4::RandomString();
 		$s2 = String4::RandomString();
 		$s3 = String4::RandomString(22);
@@ -91,6 +91,22 @@ class TcString4 extends TcBase{
 
 		$long = String4::RandomString(1000);
 		$this->assertEquals(1000,strlen($long));
+	}
+
+	function test_RandomPassword(){
+		$p1 = String4::RandomPassword();
+		$p2 = String4::RandomPassword();
+		$p3 = String4::RandomPassword(20);
+
+		$this->assertTrue(is_a($p1,"String4"));
+		$this->assertTrue(is_a($p2,"String4"));
+		$this->assertTrue(is_a($p3,"String4"));
+
+		$this->assertEquals(10,strlen($p1));
+		$this->assertEquals(10,strlen($p2));
+		$this->assertEquals(20,strlen($p3));
+
+		$this->assertTrue("$p1"!="$p2");
 	}
 
 	function test_instance(){

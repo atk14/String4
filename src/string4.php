@@ -104,25 +104,16 @@ class String4{
 			'length' => $length,
 		);
 
-		srand(floor((double) microtime() * 1000000));
 		$chars = array('a','i','o','s','t','u','v','3','4','5','8','B','C','D','E','F','7','G','H','I','J','K','L','M','N','O','j','k','l','6','P','Q','W','b','c','d','e','f','g','h','p','q','r','x','y','z','0','1','S','T','U','w','2','9','A','R','V','m','n');
 		foreach(preg_split('//',$options['extra_chars']) as $ch){
 			strlen($ch) && ($chars[] = $ch);
 		}
 
-		$s = sizeof($chars);
-
-		$out = array();
-		$c = 0;
+		$out = [];
 		for($i=0;$i<$options['length'];$i++){
-			if($i%$s==0){
-				shuffle($chars);
-				$rand = array_rand($chars,$s);
-				$c = 0;
-			}
-			$out[] = $chars[$rand[$c]];
-			$c++;
+			$out[] = self::_RandomArrayValue($chars);
 		}
+
 		return new self(join('',$out));
 	}
 
@@ -144,36 +135,36 @@ class String4{
 		$s1 = "aeuyr";
 		$s2 = "bcdfghjkmnpqrstuvwxz";
 		$password = "";
-		$last_s1 = rand(0,1);
+		$last_s1 = self::_Rand(0,1);
 		while(strlen($password)<=$length){
-			$numeric = rand(0,$numeric_versus_alpha_total);
+			$numeric = self::_Rand(0,$numeric_versus_alpha_total);
 			if($numeric<=$numeric_versus_alpha_numeric){
 				$numeric = 1;
 			}else{
 				$numeric = 0;
 			}
 			if($numeric==1){
-				$piece_length = rand($numeric_piece_min_length,$numeric_piece_max_length);
+				$piece_length = self::_Rand($numeric_piece_min_length,$numeric_piece_max_length);
 				while($piece_length>0){
-					$password .= rand(2,9);
+					$password .= self::_Rand(2,9);
 					$piece_length--;
 				}   
 			}else{  
-				$uppercase = rand(0,1);
-				$piece_length = rand($piece_min_length,$piece_max_length);
+				$uppercase = self::_Rand(0,1);
+				$piece_length = self::_Rand($piece_min_length,$piece_max_length);
 				while($piece_length>0){
 					if($last_s1==0){
 						if($uppercase==1){
-							$password .= strtoupper($s1[rand(0,strlen($s1)-1)]);
+							$password .= strtoupper($s1[self::_Rand(0,strlen($s1)-1)]);
 						}else{
-							$password .= $s1[rand(0,strlen($s1)-1)];
+							$password .= $s1[self::_Rand(0,strlen($s1)-1)];
 						}
 						$last_s1 = 1;
 					}else{
 						if($uppercase==1){
-							$password .= strtoupper($s2[rand(0,strlen($s2)-1)]);
+							$password .= strtoupper($s2[self::_Rand(0,strlen($s2)-1)]);
 						}else{
-							$password .= $s2[rand(0,strlen($s2)-1)];
+							$password .= $s2[self::_Rand(0,strlen($s2)-1)];
 						}
 						$last_s1 = 0;
 					}
@@ -185,6 +176,32 @@ class String4{
 			$password = substr($password,0,$length);
 		}
 		return new self($password);
+	}
+
+	/**
+	 * @ignore
+	 */
+	static protected function _Rand($min,$max){
+		static $seeded = false;
+
+		if(function_exists("random_int")){
+			return random_int($min,$max);
+		}
+
+		if(!$seeded){
+			srand(floor((double) microtime() * 1000000));
+			$seeded = true;
+		}
+
+		return rand($mim,$max);
+	}
+
+	/**
+	 * @ignore
+	 */
+	static protected function _RandomArrayValue(&$ary){
+		$key = self::_Rand(0,sizeof($ary)-1);
+		return $ary[$key];
 	}
 
 	/**
