@@ -299,17 +299,15 @@ class String4{
 	 * Replaces string(s) with another string(s).
 	 *
 	 *
-	 * Replaces a portion of string in the stored string.
-	 *
 	 * ```
 	 * $str = new String4("Hello World");
-	 * $str->replace("World","Guys");
+	 * $str = $str->replace("World","Guys");
 	 * ```
 	 *
 	 * or
 	 *
 	 * ```
-	 * $str->replace(array(
+	 * $str = $str->replace(array(
 	 * 	"Hello" => "Hi",
 	 * 	"World" => "Guys",
 	 * ));
@@ -323,20 +321,10 @@ class String4{
 	 */
 	function replace($search,$replace = null){
 		if(is_array($search)){
-			$_replaces_keys = array();
-			$_replaces_values = array();
-			foreach(array_keys($search) as $key){
-				$_replaces_keys[] = $key;
-				$_replaces_values[] = $search[$key];
-			}   
-			if(sizeof($_replaces_keys)==0){
-				return $this;
-			}   
-			$this->_String4 = str_replace($_replaces_keys,$_replaces_values,$this->_String4);
-			return $this;
+			if(sizeof($search)==0){ return $this->_copy($this); }
+			return $this->_copy(str_replace(array_keys($search),array_values($search),$this->_String4));
 		}
-		$this->_String4 = str_replace($search,$replace,$this->_String4);
-		return $this;
+		return $this->_copy(str_replace($search,$replace,$this->_String4));
 	}
 
 	/**
@@ -1099,6 +1087,10 @@ END;
 	 * @ignore
 	 */
 	function _copy($string = null,$encoding = null){
+		if(is_a($string,"String4")){
+			$encoding = $string->getEncoding();
+			$string = $string->toString();
+		}
 		if(!isset($string)){ $string = $this->_String4; }
 		if(!isset($encoding)){ $encoding = $this->getEncoding(); }
 		return new self($string,$encoding);

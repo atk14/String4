@@ -116,24 +116,6 @@ class TcString4 extends TcBase{
 		$this->assertEquals("ISO-8859-2",$str->getEncoding());
 	}
 
-
-	function test_clone_and_copy(){
-		$orig = new String4("Hello World","latin1");
-		$clone = clone $orig;
-		$copy = $orig->copy();
-
-		$orig->replace("Hello","Hi");
-
-		$this->assertEquals("Hi World",(string)$orig);
-		$this->assertEquals("Hello World",(string)$clone);
-		$this->assertEquals("Hello World",(string)$copy);
-
-		$this->assertEquals("latin1",$orig->getEncoding());
-		$this->assertEquals("latin1",$clone->getEncoding());
-		$this->assertEquals("latin1",$copy->getEncoding());
-
-	}
-
 	function test_length(){
 		$s1 = new String4("pěšinka","utf-8");
 		$s2 = new String4("pěšinka","ascii");
@@ -146,15 +128,14 @@ class TcString4 extends TcBase{
 
 	function test_replace(){
 		$str = new String4("Hello World");
+
 		$this->assertEquals("Hello Guys",(string)$str->replace("World","Guys"));
 
-		$str = new String4("Hello World");
 		$this->assertEquals("Hi Guys",(string)$str->replace(array(
 			"Hello" => "Hi",
 			"World" => "Guys",
 		)));
 
-		$str = new String4("Hello World");
 		$this->assertEquals("Hello World",(string)$str->replace(array()));
 	}
 
