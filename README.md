@@ -1,7 +1,7 @@
 String4
 =======
 
-[![Build Status](https://app.travis-ci.com/atk14/String4.svg?token=Kc7UxgK5oqFG8sZAhCzg&branch=master)](https://app.travis-ci.com/atk14/String4)
+[![Tests](https://github.com/atk14/String4/actions/workflows/tests.yml/badge.svg)](https://github.com/atk14/String4/actions/workflows/tests.yml)
 
 String4 is a PHP class that provides methods for string manipulation.
 
