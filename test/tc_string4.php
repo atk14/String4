@@ -260,6 +260,7 @@ class TcString4 extends TcBase{
 		// all the elements must be contained when expecting a positive result
 		$this->assertTrue($str->contains(array("Hel","llo")));
 		$this->assertFalse($str->contains(array("ello","Belle")));
+		$this->assertFalse($str->contains(array()));
 
 		// containsOneOf
 		$this->assertTrue($str->containsOneOf(array("ello","Belle")));

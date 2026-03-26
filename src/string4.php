@@ -671,6 +671,7 @@ class String4{
 	 */
 	function contains($needle){
 		if(is_array($needle)){
+			if(sizeof($needle)==0){ return false; }
 			foreach($needle as $n){
 				if(!$this->contains($n)){ return false; }
 			}
