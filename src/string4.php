@@ -665,7 +665,7 @@ class String4{
 			}
 			return true;
 		}
-		return !is_bool(strpos($this->_String4,(string)$needle));
+		return strpos($this->_String4, (string)$needle) !== false;
 	}
 
 	/**
