@@ -76,11 +76,15 @@ class TcString4 extends TcBase{
 		$s2 = String4::RandomString();
 		$s3 = String4::RandomString(22);
 
+		$this->assertTrue(is_a($s1,"String4"));
+		$this->assertTrue(is_a($s2,"String4"));
+		$this->assertTrue(is_a($s3,"String4"));
+
 		$this->assertEquals(32,strlen($s1));
 		$this->assertEquals(32,strlen($s2));
 		$this->assertEquals(22,strlen($s3));
 
-		$this->assertTrue($s1!=$s2);
+		$this->assertTrue("$s1"!="$s2");
 
 		$long = String4::RandomString(64);
 		$this->assertEquals(64,strlen($long));
