@@ -579,6 +579,10 @@ class TcString4 extends TcBase{
 		$out = (string)$s->fixEncoding("▒");
 		$this->assertEquals("▒Příliš▒ žl▒uťoučký kůň úpěl ďábelské ódy▒",$out);
 		$this->assertTrue(Translate::CheckEncoding($out,"UTF-8"));
+
+		$out = (string)$s->fixEncoding(String4::ToObject("___"));
+		$this->assertEquals("___Příliš___ žl___uťoučký kůň úpěl ďábelské ódy___",$out);
+		$this->assertTrue(Translate::CheckEncoding($out,"UTF-8"));
 	}
 
 	function test_removeEmptyLines(){

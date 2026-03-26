@@ -1021,10 +1021,18 @@ class String4{
 	}
 
 	/**
+	 * Replaces all invalid UTF-8 byte sequences with the given replacement
 	 *
+	 * When no replacement is given, the black diamond with a white question mark (U+FFFD) is used.
+	 *
+	 * ```
+	 * $s = $s->fixEncoding();
+	 * $s = $s->fixEncoding(["replacement" => "?"]);
+	 * $s = $s->fixEncoding("_");
+	 * ```
 	 */
 	function fixEncoding($options = array()){
-		if(is_string($options)){
+		if(is_string($options) || is_object($options)){
 			$options = array("replacement" => $options);
 		}
 
@@ -1032,7 +1040,7 @@ class String4{
 			"replacement" => "�", // U+FFFD REPLACEMENT CHARACTER used to replace an unknown, unrecognized or unrepresentable character
 		);
 
-		$replacement = $options["replacement"];
+		$replacement = (string)$options["replacement"];
 
 		$text = $this->_String4;
 
