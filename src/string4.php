@@ -193,7 +193,7 @@ class String4{
 			$seeded = true;
 		}
 
-		return rand($mim,$max);
+		return rand($min,$max);
 	}
 
 	/**
