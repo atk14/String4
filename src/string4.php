@@ -153,15 +153,15 @@ class String4{
 				$numeric = 0;
 			}
 			if($numeric==1){
-				$piece_lenght = rand($numeric_piece_min_length,$numeric_piece_max_length);
-				while($piece_lenght>0){
+				$piece_length = rand($numeric_piece_min_length,$numeric_piece_max_length);
+				while($piece_length>0){
 					$password .= rand(2,9);
-					$piece_lenght--;
+					$piece_length--;
 				}   
 			}else{  
 				$uppercase = rand(0,1);
-				$piece_lenght = rand($piece_min_length,$piece_max_length);
-				while($piece_lenght>0){
+				$piece_length = rand($piece_min_length,$piece_max_length);
+				while($piece_length>0){
 					if($last_s1==0){
 						if($uppercase==1){
 							$password .= strtoupper($s1[rand(0,strlen($s1)-1)]);
@@ -177,7 +177,7 @@ class String4{
 						}
 						$last_s1 = 0;
 					}
-					$piece_lenght--;
+					$piece_length--;
 				}
 			}
 		}
