@@ -107,9 +107,15 @@ class TcString4 extends TcBase{
 		// String4::ToObject()
 		$string = String4::ToObject("Hello World");
 		$this->assertTrue(is_object($string));
+		$this->assertEquals("UTF-8",$string->getEncoding());
 		$string2 = String4::ToObject($string); 
 		$this->assertTrue(is_object($string2));
+
+		$in = new String4("Test","ISO-8859-2");
+		$str = String4::ToObject($in);
+		$this->assertEquals("ISO-8859-2",$str->getEncoding());
 	}
+
 
 	function test_clone_and_copy(){
 		$orig = new String4("Hello World","latin1");

@@ -45,7 +45,7 @@ class String4{
 			$encoding = $string->getEncoding();
 		}
 		if(!isset($encoding)){
-			$encoding = defined("DEFAULT_CHARSET") ? DEFAULT_CHARSET : "UTF-8";
+			$encoding = defined("DEFAULT_CHARSET") ? constant("DEFAULT_CHARSET") : "UTF-8";
 		}
 
 		$this->_String4 = "$string";
@@ -67,8 +67,8 @@ class String4{
 	 * @return String4
 	 */
 	static function ToObject($string,$encoding = null){
-		if(is_object($string) && strtolower(get_class($string))=="string"){
-			return $string;
+		if(is_object($string) && is_a($string,"String4")){
+			return new self($string);
 		}
 		return new self($string,$encoding);
 	}
