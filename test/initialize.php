@@ -9,5 +9,4 @@ if(PHP_VERSION_ID < 50600){
 	ini_set('default_charset', DEFAULT_CHARSET);
 }
 
-require("../src/load.php");
 require("../vendor/autoload.php");
