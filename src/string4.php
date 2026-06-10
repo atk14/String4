@@ -438,7 +438,6 @@ class String4{
 				'\xC2\x85', // Next Line
 				'\xC2\xA0', // No-Break Space (NBSP)
 				'\xE1\x9A\x80', // Ogham Space Mark
-				'\xE1\xA0\x8E', // Mongolian Vowel Separator
 				'\xE2\x80\x80', // En Quad
 				'\xE2\x80\x81', // Em Quad
 				'\xE2\x80\x82', // En Space
